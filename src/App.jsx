@@ -7,7 +7,9 @@ import { useEffect } from 'react'
 function App() {
   const [count, setCount] = useState(0)
   const { devicePixelRatio } = window;
-  const [scale, setScale] = useState(1);
+  // handle windows display scaling
+  const computed = +1 / window.devicePixelRatio;
+  const [scale, setScale] = useState(computed > 1 ? computed : 1);
 
   useEffect(() => {
     document
@@ -34,6 +36,7 @@ function App() {
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
         <p>DevicePixelRatio: {devicePixelRatio}</p>
+        <p>Computed: {computed}</p>
         <p>Scale: {scale}</p>
         <button onClick={() => setScale(+1 /devicePixelRatio)}>Device</button>
         <button onClick={() => setScale(1)}>Force 1</button>
