@@ -9,7 +9,7 @@ function App() {
   const { devicePixelRatio } = window;
   // handle windows display scaling
   const computed = +1 / window.devicePixelRatio;
-  const [scale, setScale] = useState(computed > 1 ? computed : 1);
+  const [scale, setScale] = useState(computed < 1 && window.innerWidth > 768 ? computed : 1);
 
   useEffect(() => {
     document
